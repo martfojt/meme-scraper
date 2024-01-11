@@ -20,7 +20,7 @@ axios
     // Select all image elements from HTML using node-html-parser
     const images = root.querySelectorAll('img');
 
-    //
+    // Go through all the img elements, take their img urls with the src attribute and save them to imageUrls array
     images.forEach(function (img) {
       const src = img.getAttribute('src');
       if (src) {
@@ -32,9 +32,22 @@ axios
     for (let i = 0; i < Math.min(imageUrls.length, 10); i++) {
       const currentUrl = imageUrls[i];
       const filename = String(i + 1).padStart(2, '0') + '.jpg';
+
+      // Create a https request to download the image
+      https.get(currentUrl, function (imageResponse) {
+        const filePath = path.join(folderName, filename);
+
+        const fileStream = fs.createWriteStream(filePath);
+        imageResponse.pipe(fileStream);
+
+        // This is for handling errors!!!!!!
+        imageResponse.on('error', function (error) {
+          console.log('Error downloading image:', error);
+        });
+      });
     }
   })
-  // If there is .then, I must always use .catch to handle errors!!!
+  // If there is .then, I must always use .catch to handle errors!!!!!!!
   .catch(function (error) {
     console.log('Error:', error);
   });
