@@ -1,7 +1,11 @@
 import fs from 'node:fs';
-import http from 'node:http';
+import https from 'node:https';
+import path from 'node:path';
 import axios from 'axios';
 import { parse } from 'node-html-parser';
+
+// Define the folder name to which I want to download images
+const folderName = 'memes';
 
 // Use Axios to fetch HTML content from provided URL
 axios
@@ -32,5 +36,5 @@ axios
   })
   // If there is .then, I must always use .catch to handle errors!!!
   .catch(function (error) {
-    console.error('Error:', error);
+    console.log('Error:', error);
   });
