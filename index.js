@@ -7,6 +7,11 @@ import { parse } from 'node-html-parser';
 // Define the folder name to which I want to download images
 const folderName = 'memes';
 
+// Check if folder "memes" exists and if not, create one so the test.yml can pass
+if (!fs.existsSync(folderName)) {
+  fs.mkdirSync(folderName, { recursive: true });
+}
+
 // Use Axios to fetch HTML content from provided URL
 axios
   .get('https://memegen-link-examples-upleveled.netlify.app/')
