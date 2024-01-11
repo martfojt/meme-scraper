@@ -13,6 +13,7 @@ axios
     //Array for URLs
     let imageUrls = [];
 
+    // Select all image elements from HTML using node-html-parser
     const images = root.querySelectorAll('img');
 
     //
@@ -22,6 +23,10 @@ axios
         imageUrls.push(src);
       }
     });
-  });
 
-for (let i = 0; i < 10; i++) {}
+    // Loop through the first 10 URLs in the imageUrls array and name them
+    for (let i = 0; i < Math.min(imageUrls.length, 10); i++) {
+      let currentUrl = imageUrls[i];
+      let filename = String(i + 1).padStart(2, '0') + '.jpg';
+    }
+  });
