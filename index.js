@@ -12,14 +12,14 @@ if (!fs.existsSync(folderName)) {
   fs.mkdirSync(folderName);
 }
 
-// Use Axios to fetch HTML content from provided URL
+// Use Axios to get HTML content from provided url
 axios
   .get('https://memegen-link-examples-upleveled.netlify.app/')
   .then(function (response) {
     // Use node-html-parser to parse HTML content
     const root = parse(response.data);
 
-    // Array for URLs
+    // Array for urls
     const imageUrls = [];
 
     // Select all image elements from HTML using node-html-parser
@@ -33,7 +33,8 @@ axios
       }
     });
 
-    // Loop through the first 10 URLs in the imageUrls array and name them
+    // Loop through the first 10 URLs in the imageUrls array and name them. If there is less than 10 links, use that number. If more,
+    // use exactly 10.
     for (let i = 0; i < Math.min(imageUrls.length, 10); i++) {
       const currentUrl = imageUrls[i];
       const filename = String(i + 1).padStart(2, '0') + '.jpg';
