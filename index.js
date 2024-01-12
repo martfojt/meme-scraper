@@ -7,7 +7,7 @@ import { parse } from 'node-html-parser';
 // Define the folder name to which I want to download images
 const folderName = 'memes';
 
-// Check if folder "memes" exists and if not, create one so the test.yml can pass
+// Check if folder "memes" exists and if not, create one so the test.yml can pass. Using existsSync and mkdirSync methods from fs
 if (!fs.existsSync(folderName)) {
   fs.mkdirSync(folderName);
 }
