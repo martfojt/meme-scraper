@@ -9,7 +9,7 @@ const folderName = 'memes';
 
 // Check if folder "memes" exists and if not, create one so the test.yml can pass
 if (!fs.existsSync(folderName)) {
-  fs.mkdirSync(folderName, { recursive: true });
+  fs.mkdirSync(folderName);
 }
 
 // Use Axios to fetch HTML content from provided URL
